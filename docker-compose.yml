@@ -1,0 +1,35 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    environment:
+      RIMRECK_MODE: hosted
+      DJANGO_SETTINGS_MODULE: config.settings.hosted
+    depends_on:
+      - db
+    expose:
+      - "8000"
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: rimreck
+      POSTGRES_USER: rimreck
+      POSTGRES_PASSWORD: rimreck
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

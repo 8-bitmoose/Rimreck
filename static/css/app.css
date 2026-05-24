@@ -1,0 +1,12 @@
+:root {
+  --bg: #f9f7f3;
+  --fg: #1f2937;
+}
+html[data-theme="dark"] {
+  --bg: #111827;
+  --fg: #e5e7eb;
+}
+body {
+  background: radial-gradient(circle at top right, #dbeafe 0%, var(--bg) 35%);
+  color: var(--fg);
+}

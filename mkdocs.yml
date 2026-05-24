@@ -1,0 +1,7 @@
+site_name: Rimreck
+site_description: Reptile inventory docs
+repo_url: https://github.com/example/rimreck
+nav:
+  - Home: index.md
+theme:
+  name: material

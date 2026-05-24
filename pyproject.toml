@@ -1,0 +1,44 @@
+[project]
+name = "rimreck"
+version = "0.1.0"
+description = "Self-hostable reptile inventory and record-keeping app"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "django>=5.1,<6",
+  "django-environ>=0.11.2",
+  "django-htmx>=1.19.0",
+  "django-simple-history>=3.7.0",
+  "pillow>=10.4.0",
+  "qrcode>=7.4.2",
+  "whitenoise>=6.7.0",
+  "psycopg[binary]>=3.2.1",
+  "weasyprint>=62.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.6.2",
+  "pytest>=8.3.2",
+  "pytest-django>=4.8.0",
+  "factory_boy>=3.3.1",
+  "django-debug-toolbar>=4.4.6",
+]
+
+[project.scripts]
+rimreck = "rimreck.cli:main"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.dev"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["config*", "apps*", "rimreck*"]
